@@ -16,7 +16,7 @@ const Register = () => {
     });
 
     const {dispatch} = useContext(AuthContext);
-    const [error, setError] = useState(null); 
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
