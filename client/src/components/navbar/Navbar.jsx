@@ -12,10 +12,18 @@ const Navbar = () => {
         <Link to='/' style={{color: "inherit", textDecoration: "none"}}>
         <span className="logo">Jayabooking</span>
         </Link>
-        {user ? user.username : (
+        {user ? (
+          <span>{user.username}</span>
+        ) : (
           <div className="navItems">
-            <button className="navButton">Register</button>
-            <button className="navButton">Login</button>
+            {/* Add Link for Register */}
+            <Link to="/register">
+              <button className="navButton">Register</button>
+            </Link>
+            {/* Add Link for Login */}
+            <Link to="/login">
+              <button className="navButton">Login</button>
+            </Link>
           </div>
         )}
         
