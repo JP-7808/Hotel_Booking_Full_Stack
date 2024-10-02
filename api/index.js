@@ -63,7 +63,8 @@ app.get("/", async (req, res) => {
 });
 
 // Start Server
-app.listen(8800, () => {
+const PORT = process.env.PORT || 8800; // Use the port from the environment or default to 8800
+app.listen(PORT, () => {
     connect();
     console.log("Connected to backend");
 });
