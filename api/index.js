@@ -26,21 +26,13 @@ mongoose.connection.on("disconnected", ()=>{
 })
 
 // middlewares
-const allowedOrigins = [
-    'https://hotel-booking-full-stack-client.vercel.app',
-    'https://hotel-booking-full-stack-admin.vercel.app',
-  ];
-
-app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true,
-}));
+app.use(cors(
+    {
+        origin: ['https://hotel-booking-full-stack-client.vercel.app', 'https://hotel-booking-full-stack-admin.vercel.app'],
+        methods:["POST", "GET", "PUT", "DELETE"],
+        credentials: true
+    }
+))
 
 // middlewares
 app.use(cookieParser());
