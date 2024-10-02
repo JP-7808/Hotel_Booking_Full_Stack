@@ -53,15 +53,17 @@ app.use((err, req, res, next) => {
 });
 
 // Health Check Route
-app.get("/", (req, res) => res.send("Express on Vercel"));
+app.get("/", async (req, res) => {
+    try {
+        await mongoose.connection.db.admin().ping();
+        res.send("Backend connected to MongoDB and running on Vercel");
+    } catch (error) {
+        res.status(500).send("MongoDB connection error");
+    }
+});
 
 // Start Server
-// app.listen(8800, () => {
-//     connect();
-//     console.log("Connected to backend");
-// });
-
-
-connect();
-export default app;
-
+app.listen(8800, () => {
+    connect();
+    console.log("Connected to backend");
+});
