@@ -26,7 +26,7 @@ mongoose.connection.on("disconnected", ()=>{
 })
 
 // middlewares
-const allowedOrigins = ['https://your-client-domain.vercel.app', 'https://your-admin-domain.vercel.app'];
+const allowedOrigins = ['hotel-booking-full-stack-client.vercel.app', 'hotel-booking-full-stack-admin.vercel.app'];
 
 app.use(cors({
     origin: function (origin, callback) {
