@@ -35,7 +35,7 @@ const Header = ({ type }) => {
   });
 
   const navigate = useNavigate();
-  const {user} = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext); // Get dispatch from AuthContext
 
   const handleOption = (name, operation) => {
     setOptions((prev) => {
@@ -46,20 +46,21 @@ const Header = ({ type }) => {
     });
   };
 
-  const {dispatch} = useContext(SearchContext);
+  const { dispatch: searchDispatch } = useContext(SearchContext);
 
   const handleSearch = () => {
-    dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
+    searchDispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
     navigate("/hotels", { state: { destination, dates, options } });
+  };
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    navigate("/"); // Navigate to the login page
   };
 
   return (
     <div className="header">
-      <div
-        className={
-          type === "list" ? "headerContainer listMode" : "headerContainer"
-        }
-      >
+      <div className={type === "list" ? "headerContainer listMode" : "headerContainer"}>
         <div className="headerList">
           <div className="headerListItem active">
             <FontAwesomeIcon icon={faBed} />
@@ -84,23 +85,23 @@ const Header = ({ type }) => {
         </div>
         {type !== "list" && (
           <>
-            <h1 className="headerTitle">
-              A lifetime of discounts? It's Genius.
-            </h1>
+            <h1 className="headerTitle">A lifetime of discounts? It's Genius.</h1>
             <p className="headerDesc">
               Get rewarded for your travels – unlock instant savings of 10% or
               more with a free JayaBooking
             </p>
-            {!user && 
+            {!user ? (
               <>
-              <Link to={"/register"}>
-                <button className="headerBtn" >Register</button>
-              </Link>
-              <Link to={"/login"}>
-                <button className="headerBtn" >Login</button>
-              </Link>
+                <Link to={"/register"}>
+                  <button className="headerBtn">Register</button>
+                </Link>
+                <Link to={"/login"}>
+                  <button className="headerBtn">Login</button>
+                </Link>
               </>
-            }
+            ) : (
+              <button className="headerBtn" onClick={handleLogout}>Logout</button>
+            )}
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />

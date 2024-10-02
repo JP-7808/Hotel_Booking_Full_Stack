@@ -2,6 +2,7 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import List from "./pages/list/List";
 import Single from "./pages/single/Single";
+import HotelDetails from "./pages/hotelDetail/HotelDetail";
 import New from "./pages/new/New";
 import { BrowserRouter, Routes, Route , Navigate} from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
@@ -12,6 +13,7 @@ import { AuthContext } from "./context/AuthContext";
 import { hotelColumns,roomColumns, userColumns } from "./datatablesource";
 import NewHotel from "../src/pages/newHotel/NewHotel"
 import NewRoom from "./pages/newRoom/NewRoom";
+import RoomDetails from "./pages/roomDetail/RoomDetail";
 
 
 function App() {
@@ -77,10 +79,10 @@ function App() {
                 } 
               />
               <Route 
-                path=":productId" 
+                path=":hotelId" 
                 element={
                   <ProtectedRoutes>
-                    <Single />
+                    <HotelDetails />
                   </ProtectedRoutes>
                 } 
               />
@@ -103,10 +105,10 @@ function App() {
                 } 
               />
               <Route 
-                path=":productId" 
+                path=":roomId" 
                 element={
                   <ProtectedRoutes>
-                    <Single />
+                    <RoomDetails />
                   </ProtectedRoutes>
                 } 
               />
