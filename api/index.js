@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
 import authRoute from "./routes/auth.js"
 import usersRoute from "./routes/users.js"
 import roomsRoute from "./routes/rooms.js"
@@ -24,6 +25,19 @@ mongoose.connection.on("disconnected", ()=>{
     console.log("MongoDB disconnected")
 })
 
+// middlewares
+const allowedOrigins = ['https://your-client-domain.vercel.app', 'https://your-admin-domain.vercel.app'];
+
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true,
+}));
 
 // middlewares
 app.use(cookieParser());
