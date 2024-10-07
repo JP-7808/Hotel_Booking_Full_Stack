@@ -45,5 +45,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8800"
+  /* "proxy": "http://localhost:8800"  */
+  "proxy": "https://hotel-booking-full-stack-admin.vercel.app"
 }
