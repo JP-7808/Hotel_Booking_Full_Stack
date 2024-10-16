@@ -8,19 +8,22 @@ import axios from "axios";
 const Datatable = ({ columns }) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1]; // extracts 'users' from URL like '/users'
-  const [list, setList] = useState([]);
   const { data, loading, error } = useFetch(`https://hotel-booking-backend-3j5l.onrender.com/api/${path}`);
+  const [list, setList] = useState([]);
 
   useEffect(() => {
-    setList(data);
+    if (data) {
+      setList(data); // Update list only when data is available
+    }
   }, [data]);
 
   const handleDelete = async (id) => {
     try {
       await axios.delete(`https://hotel-booking-backend-3j5l.onrender.com/api/${path}/${id}`);
-      setList(list.filter((item) => item._id !== id));
+      // Update the list to remove the deleted item
+      setList((prevList) => prevList.filter((item) => item._id !== id));
     } catch (err) {
-      console.error(err);
+      console.error("Error deleting user:", err);
     }
   };
 
@@ -32,7 +35,6 @@ const Datatable = ({ columns }) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            {/* Link updated to navigate with user ID */}
             <Link to={`/${path}/${params.row._id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
@@ -45,10 +47,14 @@ const Datatable = ({ columns }) => {
     },
   ];
 
+  // Handle loading and error states
+  if (loading) return <div className="loading">Loading...</div>;
+  if (error) return <div className="error">Error: {error}</div>;
+
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        {path}
+        {path.charAt(0).toUpperCase() + path.slice(1)} {/* Capitalize first letter */}
         <Link to={`/${path}/new`} className="link">
           Add New
         </Link>
