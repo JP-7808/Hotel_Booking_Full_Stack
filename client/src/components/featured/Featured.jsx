@@ -3,7 +3,7 @@ import "./featured.css";
 
 const Featured = () => {
   
-  const {data, loading, error} = useFetch("/api/hotels/countByCity?cities=betlin,Bihar,London")
+  const {data, loading, error} = useFetch("https://hotel-booking-backend-3j5l.onrender.com/api/hotels/countByCity?cities=betlin,Bihar,London")
 
   return (
     <div className="featured">

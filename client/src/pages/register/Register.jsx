@@ -26,10 +26,10 @@ const Register = () => {
     const handleClick = async (e) => {
         e.preventDefault();
         try{
-            await axios.post("/api/auth/register", credentials);
+            await axios.post("https://hotel-booking-backend-3j5l.onrender.com/api/auth/register", credentials);
 
             // Automatically log the user in
-            const loginRes = await axios.post("/api/auth/login", {
+            const loginRes = await axios.post("https://hotel-booking-backend-3j5l.onrender.com/api/auth/login", {
                 username: credentials.username,
                 password: credentials.password,
             })
