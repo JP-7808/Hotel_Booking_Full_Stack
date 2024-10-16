@@ -13,7 +13,7 @@ const Single = () => {
     // Fetch user details using the user ID from the API
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`/api/users/${userId}`);
+        const res = await axios.get(`https://hotel-booking-backend-3j5l.onrender.com/api/users/${userId}`);
         setUser(res.data); // Set the user data
       } catch (err) {
         console.error(err);

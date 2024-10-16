@@ -9,7 +9,7 @@ const Datatable = ({ columns }) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1]; // extracts 'users' from URL like '/users'
   const [list, setList] = useState([]);
-  const { data, loading, error } = useFetch(`/api/${path}`);
+  const { data, loading, error } = useFetch(`https://hotel-booking-backend-3j5l.onrender.com/api/${path}`);
 
   useEffect(() => {
     setList(data);
@@ -17,7 +17,7 @@ const Datatable = ({ columns }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/api/${path}/${id}`);
+      await axios.delete(`https://hotel-booking-backend-3j5l.onrender.com/api/${path}/${id}`);
       setList(list.filter((item) => item._id !== id));
     } catch (err) {
       console.error(err);

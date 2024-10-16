@@ -13,7 +13,7 @@ const SingleHotel = () => {
     // Fetch hotel details using the hotel ID from the API
     const fetchHotel = async () => {
       try {
-        const res = await axios.get(`/api/hotels/find/${hotelId}`);
+        const res = await axios.get(`https://hotel-booking-backend-3j5l.onrender.com/api/hotels/find/${hotelId}`);
         setHotel(res.data); // Set the hotel data
       } catch (err) {
         console.error(err);

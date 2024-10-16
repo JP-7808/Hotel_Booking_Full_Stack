@@ -13,13 +13,13 @@ const Widget = ({ type }) => {
   let fetchUrl;
   switch (type) {
     case "user":
-      fetchUrl = "/api/users";
+      fetchUrl = "https://hotel-booking-backend-3j5l.onrender.com/api/users";
       break;
     case "hotels":
-      fetchUrl = "/api/hotels";
+      fetchUrl = "https://hotel-booking-backend-3j5l.onrender.com/api/hotels";
       break;
     case "rooms":
-      fetchUrl = "/api/rooms";
+      fetchUrl = "https://hotel-booking-backend-3j5l.onrender.com/api/rooms";
       break;
     default:
       fetchUrl = null;

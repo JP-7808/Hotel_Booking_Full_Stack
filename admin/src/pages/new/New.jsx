@@ -29,7 +29,7 @@ const New = ({ inputs, title }) => {
         img: url,
       };
 
-      await axios.post("/api/auth/register", newUser);
+      await axios.post("https://hotel-booking-backend-3j5l.onrender.com/api/auth/register", newUser);
 
     }catch(err){
       console.log(err)

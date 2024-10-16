@@ -13,7 +13,7 @@ const RoomDetail = () => {
     // Fetch room details using the room ID from the API
     const fetchRoom = async () => {
       try {
-        const res = await axios.get(`/api/rooms/${roomId}`);
+        const res = await axios.get(`https://hotel-booking-backend-3j5l.onrender.com/api/rooms/${roomId}`);
         setRoom(res.data); // Set the room data
       } catch (err) {
         console.error(err);
